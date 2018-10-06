@@ -15,7 +15,9 @@ client.on('message', msg => {
 
     let role;
 
+    /* Loop through each role command, see if any apply */
     for (role of config.roles) {
+        /* Found a role to apply */
         if (msg.content == config.prefix + role.command) {
             /* Find the role object of the specified role */
             let roleObject = msg.guild.roles.find(val => val.name === role.name);
@@ -47,6 +49,24 @@ client.on('message', msg => {
             break;
         }
     }
+
+    /* Help message */
+    if (msg.content == config.prefix + 'help') {
+        const help: string = config.prefix + 'help';
+
+        let response: string = '```' + help.padEnd(20) + 'Displays this help message\n';
+
+        for (role of config.roles) {
+            const line: string = config.prefix + role.command;
+
+            response += line.padEnd(20) + `Applies the ${role.name} role\n`;
+        }
+
+        response += '```';
+
+        msg.reply(response);
+    }
+
 });
 
 client.login(config.token);
