@@ -1,0 +1,30 @@
+class Config {
+    /* The token of the bot */
+    token: string = 'Enter your token here';
+
+    /* The prefix uses with commands, for example *student */
+    prefix: string = '*';
+
+    /* The roles that can be applied, [RoleName, commandname] */
+    roles: [Role] = [
+        new Role('Student', 'student')
+    ]
+
+    /* The name of the emoji to use when successfully adding a role */
+    successEmoji: string = 't_ok';
+}
+
+class Role {
+    constructor(name, command) {
+        this.name = name;
+        this.command = command;
+    }
+
+    /* The name of the role, in discord */
+    name: string;
+
+    /* The command needed to gain the role (Doesn't include prefix) */
+    command: string;
+}
+
+module.exports = new Config();

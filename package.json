@@ -1,0 +1,22 @@
+{
+  "name": "the-professor",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^10.11.4",
+    "discord.js": "^11.4.2",
+    "erlpack": "github:discordapp/erlpack",
+    "ts-node": "^7.0.1",
+    "tsconfig-paths": "^3.6.0",
+    "typescript": "^3.1.1",
+    "uws": "^99.0.0",
+    "zlib-sync": "^0.1.4"
+  },
+  "description": "Simple as hell bot which simply applies the 'Student' role to anyone who types '!student' (Or the chosen prefix)",
+  "devDependencies": {}
+}
