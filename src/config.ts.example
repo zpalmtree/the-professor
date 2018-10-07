@@ -7,7 +7,7 @@ class Config {
 
     /* The roles that can be applied, [RoleName, commandname] */
     roles: Role[] = [
-        new Role('Student', 'student'),
+        new Role('student', 'student'),
     ]
 
     /* The name of the emoji to react with when successfully adding a role */
