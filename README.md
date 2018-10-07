@@ -1,7 +1,8 @@
 # the-professor
 
-Simple as hell bot which simply applies the 'Student' role to anyone who types
-'!student' (Or the chosen prefix)
+Simple as hell bot which simply applies any roles specified in the config with the chosen prefix.
+
+Ensure your bot user has higher perms than the roles you are trying to apply.
 
 ## Prerequisites
 
@@ -31,7 +32,14 @@ Simple as hell bot which simply applies the 'Student' role to anyone who types
 `https://discordapp.com/oauth2/authorize?client_id=498258111572738048&scope=bot&permissions=268437568`
 * Open said link and choose the server you wish to add the bot to. You must have `Manage Server` permissions.
 
-## Usage
+## Configuration
+
+Modify `src/config.ts`
+
+## Installation
 
 `npm install`
+
+## Running
+
 `node -r ts-node/register -r tsconfig-paths/register src/index.ts`
