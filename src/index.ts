@@ -7,6 +7,22 @@ client.on('ready', () => {
     console.log('Logged in');
 });
 
+function addReaction(emoji: string, message) : void {
+    /* Find the reaction */
+    const reaction = message.guild.emojis.find(
+        val => val.name == emoji
+    );
+
+    /* Couldn't find the reaction */
+    if (!reaction) {
+        console.error(`Failed to find emoji: ${emoji} on the server!`);
+        return;
+    }
+
+    /* Add the reaction */
+    message.react(reaction).catch(console.error);
+}
+
 client.on('message', msg => {
     /* Don't do anything for bots */
     if (msg.author.bot) {
@@ -19,31 +35,30 @@ client.on('message', msg => {
     for (role of config.roles) {
         /* Found a role to apply */
         if (msg.content == config.prefix + role.command) {
+
             /* Find the role object of the specified role */
             let roleObject = msg.guild.roles.find(val => val.name === role.name);
 
             /* Couldn't find role */
             if (!roleObject) {
-                console.error('Failed to find role!');
-                break;
+                console.error(`Failed to find role ${role.name} on the server!`);
+                return;
+            }
+
+            /* Check if they have the role already */
+            if (msg.member.roles.find(val => val.name === role.name)) {
+                console.log(`User ${msg.member.displayName} already has the role ${role.name}, skipping.`);
+
+                addReaction(config.roleAlreadyExistsEmoji, msg);
+
+                return;
             }
 
             /* Apply the role */
             msg.member.addRole(roleObject).then(() => {
-                console.log('Added role');
+                console.log(`Applied role ${role.name} to ${msg.member.displayName}`);
 
-                /* Find the reaction */
-                const reaction = msg.guild.emojis.find(val => val.name == config.successEmoji);
-
-                /* Couldn't find the reaction */
-                if (!reaction) {
-                    console.error('Failed to find emoji on server!');
-                    return;
-                }
-
-                /* Add the reaction */
-                msg.react(reaction).catch(console.error);
-
+                addReaction(config.successEmoji, msg);
             }).catch(console.error);
 
             break;

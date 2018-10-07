@@ -3,15 +3,18 @@ class Config {
     token: string = 'Enter your token here';
 
     /* The prefix uses with commands, for example *student */
-    prefix: string = '&';
+    prefix: string = '*';
 
     /* The roles that can be applied, [RoleName, commandname] */
-    roles: [Role] = [
-        new Role('Student', 'student')
+    roles: Role[] = [
+        new Role('Student', 'student'),
     ]
 
-    /* The name of the emoji to use when successfully adding a role */
+    /* The name of the emoji to react with when successfully adding a role */
     successEmoji: string = 't_ok';
+
+    /* The emoji to react with when the user already has the role */
+    roleAlreadyExistsEmoji: string = 't_shrug';
 }
 
 class Role {
