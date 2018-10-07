@@ -3,7 +3,7 @@ class Config {
     token: string = 'Enter your token here';
 
     /* The prefix uses with commands, for example *student */
-    prefix: string = '*';
+    prefix: string = '&';
 
     /* The roles that can be applied, [RoleName, commandname] */
     roles: [Role] = [
