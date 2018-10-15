@@ -84,4 +84,9 @@ client.on('message', msg => {
 
 });
 
-client.login(config.token);
+function launch() {
+    client.login(config.token)
+          .catch((err) => { console.error(err); launch() });
+}
+
+launch();
