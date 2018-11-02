@@ -47,7 +47,7 @@ client.on('message', msg => {
 
             /* Check if they have the role already */
             if (msg.member.roles.find(val => val.name === role.name)) {
-                console.log(`User ${msg.member.displayName} already has the role ${role.name}, skipping.`);
+                console.error(`User ${msg.member.displayName} already has the role ${role.name}, skipping.`);
 
                 addReaction(config.roleAlreadyExistsEmoji, msg);
 
@@ -56,7 +56,7 @@ client.on('message', msg => {
 
             /* Apply the role */
             msg.member.addRole(roleObject).then(() => {
-                console.log(`Applied role ${role.name} to ${msg.member.displayName}`);
+                console.error(`Applied role ${role.name} to ${msg.member.displayName}`);
 
                 addReaction(config.successEmoji, msg);
             }).catch(console.error);
@@ -83,6 +83,8 @@ client.on('message', msg => {
     }
 
 });
+
+client.on('error', console.error);
 
 function launch() {
     client.login(config.token)
