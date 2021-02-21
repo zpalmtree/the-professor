@@ -6,8 +6,7 @@ Ensure your bot user has higher perms than the roles you are trying to apply.
 
 ## Prerequisites
 
-* npm
-* python-2
+* yarn
 
 ## Setup
 
@@ -34,11 +33,11 @@ Ensure your bot user has higher perms than the roles you are trying to apply.
 
 ## Configuration
 
-Modify `src/config.ts`
+Copy `src/config.ts.example` to `src/config.tx` and modify.
 
 ## Installation
 
-`npm install`
+`yarn install`
 
 ## Running
 

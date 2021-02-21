@@ -7,11 +7,9 @@ client.on('ready', () => {
     console.log('Logged in');
 });
 
-function addReaction(emoji: string, message) : void {
+export function addReaction(emoji, message): void {
     /* Find the reaction */
-    const reaction = message.guild.emojis.find(
-        val => val.name == emoji
-    );
+    const reaction = message.guild!.emojis.resolve(emoji);
 
     /* Couldn't find the reaction */
     if (!reaction) {
@@ -37,7 +35,7 @@ client.on('message', msg => {
         if (msg.content == config.prefix + role.command) {
 
             /* Find the role object of the specified role */
-            let roleObject = msg.guild.roles.find(val => val.name === role.name);
+            let roleObject = msg.guild.roles.cache.find(val => val.name === role.name);
 
             /* Couldn't find role */
             if (!roleObject) {
@@ -46,19 +44,16 @@ client.on('message', msg => {
             }
 
             /* Check if they have the role already */
-            if (msg.member.roles.find(val => val.name === role.name)) {
+            if (msg.member.roles.cache.some(val => val.name === role.name)) {
                 console.error(`User ${msg.member.displayName} already has the role ${role.name}, skipping.`);
-
-                addReaction(config.roleAlreadyExistsEmoji, msg);
-
+                msg.react('👌');
                 return;
             }
 
             /* Apply the role */
-            msg.member.addRole(roleObject).then(() => {
+            msg.member.roles.add(roleObject).then(() => {
                 console.error(`Applied role ${role.name} to ${msg.member.displayName}`);
-
-                addReaction(config.successEmoji, msg);
+                msg.react('👌');
             }).catch(console.error);
 
             break;

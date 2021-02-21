@@ -9,12 +9,6 @@ class Config {
     roles: Role[] = [
         new Role('student', 'student'),
     ]
-
-    /* The name of the emoji to react with when successfully adding a role */
-    successEmoji: string = 't_ok';
-
-    /* The emoji to react with when the user already has the role */
-    roleAlreadyExistsEmoji: string = 't_shrug';
 }
 
 class Role {
